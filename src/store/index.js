@@ -112,7 +112,7 @@ export default createStore({
         "id": "ed606a2f4c4f499618a78ff5f7c8e51cd2ca4d8bfa7e2b41a27754bb78b1df1f",
         "name": "DEROSwap",
         "description": "DEROSwap allows you to easily swap any token on DERO chain",
-        "url": "https://deroswap.io",
+        "url": window.location.origin,
       }))
     },
     sendRpc(store, { method, id, params }) {
