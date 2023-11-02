@@ -210,7 +210,7 @@ export default {
     },
     async submit() {
       const res = await this.$store.dispatch("swap", {
-        asset1: this.to.asset,
+        asset1: this.from.asset,
         atomicAmountFrom: Math.floor(this.from.amount * Math.pow(10, this.from.asset.digit)),
         pairScId: this.currentPair.contract,
       })
