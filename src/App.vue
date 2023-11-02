@@ -6,7 +6,7 @@
     >
       <div class="content">
         <h1>DeroSwap</h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt nesciunt natus cumque, quas facere perspiciatis? Quis non maiores praesentium voluptates, placeat aut impedit, exercitationem soluta quo, delectus iste officiis officia.</p>
+        <p>To access the service, please start the XSWD server to initiate the secure connection between your wallet and DeroSwap.</p>
       
         <div 
           class="auth-pending"

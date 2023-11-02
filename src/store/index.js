@@ -285,12 +285,10 @@ export default createStore({
           return store.dispatch(
             "sendRpcAndWait",
             { method: "GetBalance", params}
-          ).then(() => {
-            // console.log(res);
-            a.atomicBalance = 100; //res?.balance;
+          ).then((res) => {
+            a.atomicBalance = res?.balance;
           })
         })
-
 
         return Promise.all([...promisesCB, ...promisesUB]).then(() => store.state.pairs);
       })
