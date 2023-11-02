@@ -354,7 +354,7 @@ export default createStore({
         "sendRpcAndWait", {
           method: "DERO.GetGasEstimate", params
       })
-      return gasEstimate.gasstorage/ 100000
+      return gasEstimate.gasstorage / 100000
     },
     async swap(store, { asset1, atomicAmountFrom, pairScId }) {
       const randomAddress = (await store.dispatch("getRandomAddress")).address[0];
