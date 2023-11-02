@@ -47,7 +47,10 @@ export default createStore({
   },
   actions: {
     async start(store) {
-      await store.dispatch("openWebSocket");
+      await store.dispatch("openWebSocket").catch((e) => {
+        console.error(e);
+        store.dispatch("displayToast", "Error while connecting to the XSWD Server, is it running ?");
+      });
       await store.dispatch("getAddress");
     },
     displayToast(store, text) {
@@ -57,14 +60,19 @@ export default createStore({
       }, 10000)
     },
     openWebSocket(store) {
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         /**
          * 1. Initiates the WebSocket
          * 2. When opened, asks the authorization
          * 3. Waits for the accept message
          * 4. Resolves
          */
-        store.state.websocket = new WebSocket("ws://localhost:44326/xswd");
+        try {
+          store.state.websocket = new WebSocket("ws://localhost:44326/xswd");
+        } catch (e) {
+          reject(e);
+          return;
+        }
   
         store.state.websocket.onmessage = (message) => {
           const data = JSON.parse(message.data)
@@ -84,6 +92,7 @@ export default createStore({
         store.state.websocket.onerror = (error) => {
           store.state.connectionState = -1;
           console.error(error);
+          store.dispatch("displayToast", "An error has occured with XSWD");
         };
   
         store.state.websocket.onopen = () => {
